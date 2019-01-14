@@ -1,7 +1,7 @@
 var https = require('https');
 var body = '';
 
-function getAndPrintHTML (options, callback) {
+function getHTML (options, callback) {
 
   /* Add your code here */
   https.get(options, function (response) {
@@ -32,4 +32,4 @@ var requestOptions = {
   path: '/http-examples/step4.html'
 };
 
-getAndPrintHTML(requestOptions, printHTML);
+getHTML(requestOptions, printHTML);
