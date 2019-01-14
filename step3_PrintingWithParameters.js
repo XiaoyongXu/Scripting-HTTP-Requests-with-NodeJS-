@@ -1,21 +1,27 @@
-function getAndPrintHTML (options) {
-  var https = require('https');
-  var body = [];
-  var callback = function(response) {
-    
-    response.setEncoding('utf-8')
-    response.on('data', function(chunk) {
-      body.push(chunk);
-      
-    });
-    
-  }
-  
-  https.request.end(body,function(){
-    console.log(body);
-  });
 
+var https = require('https');
+var body = '';
+
+function getAndPrintHTML (options) {
+  https.get(options, function (response) {
+
+    // set encoding of received data to UTF-8
+    response.setEncoding('utf8');
+  
+    // the callback is invoked when a `data` chunk is received
+
+    response.on('data', function(chunk) {
+      body += chunk;
+    });
+  
+    // the callback is invoked when all of the data has been received
+    // (the `end` of the stream)
+    response.on('end', function() {
+      console.log(body);
+    });
+  });
 }
+
 
 var requestOptions = {
   host: 'sytantris.github.io',
@@ -23,4 +29,4 @@ var requestOptions = {
 };
 
 
-getAndPrintHTML(requestOptions);
+getAndPrintHTML(requestOptions)
