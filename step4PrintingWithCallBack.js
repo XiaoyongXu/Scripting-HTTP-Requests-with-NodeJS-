@@ -1,8 +1,7 @@
-var https = require('https');
-var body = '';
 
 function getHTML (options, callback) {
-
+  var https = require('https');
+  var body = '';
   /* Add your code here */
   https.get(options, function (response) {
 
